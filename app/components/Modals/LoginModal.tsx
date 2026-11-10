@@ -96,9 +96,9 @@ function LoginModal() {
       />
       <Button
         outline
-        label="Continue with Google"
+        label="Continue with GitHub"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
       />
       <div className="
         text-neutral-600
