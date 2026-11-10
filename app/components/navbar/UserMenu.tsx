@@ -60,7 +60,7 @@ export function UserMenu({
         ">
           <AiOutlineMenu size={18}/>
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image}/>
           </div>
         </div>
       </div>
