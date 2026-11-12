@@ -2,7 +2,7 @@
 
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import useRegisterModal from '@/app/Hooks/useRegisterModal';
 import Modal from './Modal';
@@ -30,16 +30,6 @@ function LoginModal() {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    // signIn('credentials', {email: 'user1@gmail.com', password: '123456'})
-    // .then((result) => {
-    //   toast.success('success');
-    //   console.log(result)
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   toast.error(error);
-    // })
-
     signIn('credentials', {
       ...data,
       redirect: false,
@@ -59,6 +49,13 @@ function LoginModal() {
     })
     .catch(error => {console.log('=== ERROR: ', error)});
   }
+
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
@@ -107,13 +104,13 @@ function LoginModal() {
         font-light
       ">
         <div className="flex  items-center justify-center gap-2">
-          <div className="">Already have an account?</div>
-          <div onClick={registerModal.onClose} className="
-          text-neutral-800 
-          cursor-pointer 
-          hover:underline
+          <div className="">First time using Airbnb?</div>
+          <div onClick={toggle} className="
+            text-neutral-800 
+            cursor-pointer 
+            hover:underline
           ">
-            Log in
+            Create an account
           </div>
         </div>
       </div>
