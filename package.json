@@ -17,6 +17,7 @@
     "dotenv": "^18.0.9",
     "next": "16.4.3",
     "next-auth": "^4.24.15",
+    "query-string": "^10.0.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-hook-form": "^7.91.0",
