@@ -3,6 +3,7 @@ import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenuHelper from "./UserMenuHelper";
+import Categories from "../Categories";
 
 function UserMenuFallback() {
   return (
@@ -18,6 +19,8 @@ function UserMenuFallback() {
     "></div>
   );
 }
+
+console.log('Navbar rendered again');
 
 export async function Navbar() {
   return (
@@ -44,6 +47,9 @@ export async function Navbar() {
           </div>
         </Container>
       </div>
+      <Suspense>
+        <Categories />
+      </Suspense>
     </div>
   );
 }
