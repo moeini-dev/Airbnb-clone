@@ -7,6 +7,9 @@ import Heading from "../Heading";
 import { categories } from "../Categories";
 import CategoryInput from "../CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
+import CountrySelect from "../CountrySelect";
+import Map from "../Map";
+import dynamic from "next/dynamic";
 
 enum STEPS {
   CATEGORY = 0,
@@ -47,6 +50,16 @@ function RentModal() {
   });
 
   const category = watch('category');
+  const location = watch('location');
+
+  // It needs dynamic import so that the server rendering phase get passed
+  // otherwise, Next.js would throw an error stating that there is no Window object
+  // see https://medium.com/@tomisinabiodun/displaying-a-leaflet-map-in-nextjs-85f86fccc10c
+  const Map = useMemo(() => dynamic(() => import('../Map'), 
+    {
+      ssr: false,
+      loading: () => (<div className='sm:h-[50vh] h-[35vh]'></div>)
+    }), [location]);
 
 
   const setCustomeValue = (id: string, value: any) => {
@@ -108,7 +121,25 @@ function RentModal() {
       </div>
     </div>
   )
-
+  if(step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading 
+          title="Where is your place located"
+          subtitle="Help guests find you"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => {
+            setCustomeValue('location', value);
+          }}
+        />
+        <Map 
+          center={location?.latlng}
+        />
+      </div>
+    )
+  }
 
   return(
     <Modal 
