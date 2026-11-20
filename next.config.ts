@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   images: {
     remotePatterns: [
-      new URL("https://avatars.githubusercontent.com/u/**?v=4")
+      new URL("https://avatars.githubusercontent.com/u/**?v=4"),
+      new URL("https://res.cloudinary.com/wcwqp0l3/image/upload/**")
     ]
   },
   turbopack: {
