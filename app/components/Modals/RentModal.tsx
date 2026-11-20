@@ -11,6 +11,7 @@ import CountrySelect from "../CountrySelect";
 import Map from "../Map";
 import dynamic from "next/dynamic";
 import Counter from "../Counter";
+import ImageUpload from "../Inputs/ImageUpload";
 
 enum STEPS {
   CATEGORY = 0,
@@ -55,6 +56,7 @@ function RentModal() {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
   
   // It needs dynamic import so that the server rendering phase get passed
   // otherwise, Next.js would throw an error stating that there is no Window object
@@ -169,6 +171,21 @@ function RentModal() {
           subtitle="How many bathrooms do you have?"
           value={bathroomCount}
           onChange={(value) => setCustomeValue('bathroomCount', value)}
+        />
+      </div>
+    );
+  }
+
+  if(step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className="flex flex-col gap-8 h-full">
+        <Heading 
+          title="Add a photo of your place"
+          subtitle="Show guests what your place looks like!"
+        />
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustomeValue('imageSrc', value)}
         />
       </div>
     );
