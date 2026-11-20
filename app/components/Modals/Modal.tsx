@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
+import { STEPS } from "./RentModal";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -15,6 +16,8 @@ interface ModalProps {
   disabled?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
+  steps?: number;
+  currentStep?: number;
 }
 
 function Modal({
@@ -27,7 +30,9 @@ function Modal({
   actionLabel,
   disabled,
   secondaryAction,
-  secondaryActionLabel
+  secondaryActionLabel,
+  steps,
+  currentStep
 }: ModalProps) {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -127,6 +132,21 @@ function Modal({
                 <div className="text-lg font-semibold">{title}</div>
               </div>
               {/* BODY */}
+              {steps && <div className="relative flex gap-2 justify-between px-6 pb-2">
+                {[...Array(steps)].map((_ , index) => (
+                  <div 
+                    key={index} 
+                    className={`
+                      flex 
+                      ${index === currentStep ? "flex-[1.5]" : "flex-1"}
+                      ${index === currentStep ? "bg-rose-400" : "bg-rose-100"} 
+                      h-1 
+                      rounded-full 
+                      transition-width 
+                      duration-300
+                    `}></div>
+                ))}
+              </div>}
               <div className="relative p-6 flex-auto">{body}</div>
               {/* FOOTER */}
               <div className="flex flex-col gap-2 p-6">

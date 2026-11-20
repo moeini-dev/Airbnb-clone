@@ -13,7 +13,7 @@ import dynamic from "next/dynamic";
 import Counter from "../Counter";
 import ImageUpload from "../Inputs/ImageUpload";
 
-enum STEPS {
+export enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
   INFO = 2,
@@ -192,16 +192,20 @@ function RentModal() {
   }
 
   return(
-    <Modal 
-      title="Airbnb your home!"
-      isOpen={rentModal.isOpen}
-      onClose={rentModal.onClose}
-      onSubmit={onNext}
-      actionLabel={actionLabel}
-      secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      body={bodyContent}
-    />
+    <>
+      <Modal 
+        title="Airbnb your home!"
+        isOpen={rentModal.isOpen}
+        onClose={rentModal.onClose}
+        onSubmit={onNext}
+        actionLabel={actionLabel}
+        secondaryActionLabel={secondaryActionLabel}
+        secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+        body={bodyContent}
+        steps={6}
+        currentStep={step}
+      />
+    </>
   );
 }
 
