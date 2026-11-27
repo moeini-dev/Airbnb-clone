@@ -26,7 +26,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <LoginModal />
         <RentModal />
         <Navbar />
-        {children}
+        <div className="pb-20 pt-28">
+          {children}
+        </div>
       </body>
     </html>
   );
