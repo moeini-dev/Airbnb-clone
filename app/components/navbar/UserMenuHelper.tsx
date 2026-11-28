@@ -1,4 +1,4 @@
-import getCurrentUser from "@/app/libs/getCurrentUser";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import UserMenu from "./UserMenu";
 import { connection } from "next/server";
 import { cookies } from "next/headers";

@@ -1,8 +1,8 @@
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
-import getListings from "./libs/getListings";
+import getListings from "./actions/getListings";
 import ListingCard from "./components/Listings/ListingCard";
-import getCurrentUser from "./libs/getCurrentUser";
+import getCurrentUser from "./actions/getCurrentUser";
 
 // Without this line of code, the expression 'const listings = await getListings();' is impossible here.
 export const instant = false;

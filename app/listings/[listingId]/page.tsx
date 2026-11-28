@@ -1,6 +1,6 @@
 import EmptyState from "@/app/components/EmptyState";
-import getCurrentUser from "@/app/libs/getCurrentUser";
-import getListingById from "@/app/libs/getListingById";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getListingById from "@/app/actions/getListingById";
 import ListingClient from "../ListingClient";
 
 interface IParams {
